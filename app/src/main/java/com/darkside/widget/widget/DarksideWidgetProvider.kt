@@ -119,8 +119,8 @@ class DarksideWidgetProvider : AppWidgetProvider() {
             }
 
             // Fallback for Android 8 - 11 based on widget width/height options
-            val minWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 250)
-            val minHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 140)
+            val minWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 265).let { if (it <= 0) 265 else it }
+            val minHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 110).let { if (it <= 0) 110 else it }
 
             return when {
                 minWidth >= 265 && minHeight >= 110 -> build4x2Views(context)
