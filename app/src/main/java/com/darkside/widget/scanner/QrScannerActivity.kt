@@ -16,8 +16,8 @@ import com.darkside.widget.api.DarksideApi
 import com.darkside.widget.api.ScanResponse
 import com.darkside.widget.auth.AuthManager
 import com.darkside.widget.ui.LoginActivity
-import com.google.android.gms.code.scanner.GmsBarcodeScannerOptions
-import com.google.android.gms.code.scanner.GmsBarcodeScanning
+import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
+import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import kotlin.concurrent.thread
 

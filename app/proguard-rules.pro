@@ -9,7 +9,8 @@
 -keep interface okhttp3.** { *; }
 
 # Google Code Scanner
--keep class com.google.android.gms.code.scanner.** { *; }
+-keep class com.google.mlkit.vision.codescanner.** { *; }
+-keep class com.google.mlkit.vision.barcode.** { *; }
 
 # AndroidX and Material
 -keep class com.google.android.material.** { *; }
