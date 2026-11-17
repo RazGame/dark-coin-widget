@@ -72,3 +72,21 @@ dependencies {
     // Lightweight HTTP Client
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
+
+tasks.register("copyReleaseApkToZ") {
+    doLast {
+        val zDrive = file("Z:/")
+        if (zDrive.exists() && zDrive.isDirectory) {
+            val releaseApk = layout.buildDirectory.file("outputs/apk/release/app-release.apk").get().asFile
+            if (releaseApk.exists()) {
+                releaseApk.copyTo(file("Z:/Darkside-release.apk"), overwrite = true)
+                releaseApk.copyTo(file("Z:/app-release.apk"), overwrite = true)
+                println("Copied APK to Z:/ successfully")
+            }
+        }
+    }
+}
+
+tasks.named("assembleRelease") {
+    finalizedBy("copyReleaseApkToZ")
+}
