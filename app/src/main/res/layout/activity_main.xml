@@ -34,9 +34,10 @@
                     android:src="@drawable/ic_darkside_logo" />
             </LinearLayout>
 
-            <!-- State 1: Not Logged In Card -->
+            <!-- State 1: Not Logged In Card (Official M3 Filled Card) -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_not_logged_in"
+                style="@style/Widget.Material3.CardView.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
@@ -67,22 +68,23 @@
                         android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="13sp" />
 
+                    <!-- Official Material 3 Expressive Filled Hero Button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_login"
+                        style="@style/Widget.Material3Expressive.Button"
                         android:layout_width="match_parent"
-                        android:layout_height="54dp"
+                        android:layout_height="56dp"
                         android:layout_marginTop="18dp"
                         android:fontFamily="@font/unisans_bold"
                         android:text="@string/login_btn"
-                        android:textColor="?attr/colorOnPrimaryContainer"
-                        app:backgroundTint="?attr/colorPrimaryContainer"
                         app:cornerRadius="100dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- State 2: Logged In Dashboard Card (Material 3 Expressive Tonal Surface) -->
+            <!-- State 2: Logged In Dashboard Card (Official M3 Filled Card) -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_logged_in"
+                style="@style/Widget.Material3.CardView.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="?attr/colorSurfaceContainer"
@@ -134,18 +136,20 @@
                                 android:textSize="11sp" />
                         </LinearLayout>
 
-                        <!-- Refresh Action (Min 48x48dp touch target) -->
-                        <ImageView
+                        <!-- Official Material 3 Expressive Tonal Icon Button (48x48dp target) -->
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_refresh"
+                            style="@style/Widget.Material3Expressive.Button.IconButton.Tonal"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            android:background="@drawable/bg_pill_badge"
                             android:contentDescription="@string/refresh_btn"
-                            android:padding="13dp"
-                            android:src="@drawable/ic_refresh" />
+                            app:icon="@drawable/ic_refresh"
+                            app:iconGravity="textStart"
+                            app:iconPadding="0dp"
+                            app:iconSize="22dp" />
                     </LinearLayout>
 
-                    <!-- Expressive Hero Balance Card -->
+                    <!-- Expressive Hero Balance Card (Tonal surface container high) -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -204,37 +208,36 @@
                             android:textSize="11sp" />
                     </LinearLayout>
 
-                    <!-- Hero Action: Scan QR (Expressive Pill Button) -->
+                    <!-- Hero Action: Scan QR (Official Material 3 Expressive Tonal Button) -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_test_scan"
+                        style="@style/Widget.Material3Expressive.Button.TonalButton"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginTop="18dp"
                         android:fontFamily="@font/unisans_bold"
                         android:text="@string/test_scan_btn"
-                        android:textColor="?attr/colorOnPrimaryContainer"
-                        app:backgroundTint="?attr/colorPrimaryContainer"
                         app:cornerRadius="100dp"
                         app:icon="@drawable/ic_scan_qr"
-                        app:iconTint="?attr/colorOnPrimaryContainer" />
+                        app:iconGravity="textStart"
+                        app:iconPadding="10dp"
+                        app:iconSize="22dp" />
 
-                    <!-- Secondary Action: Pin Widget (Outlined / Tonal) -->
+                    <!-- Secondary Action: Pin Widget (Official Material 3 Expressive Outlined Button) -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_pin_widget"
-                        style="@style/Widget.Material3.Button.TonalButton"
+                        style="@style/Widget.Material3Expressive.Button.OutlinedButton"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="52dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/unisans_bold"
                         android:text="@string/pin_widget_btn"
-                        android:textColor="?attr/colorOnSurface"
-                        app:backgroundTint="?attr/colorSurfaceContainerHigh"
                         app:cornerRadius="100dp" />
 
-                    <!-- Tertiary Action: Logout -->
+                    <!-- Tertiary Action: Logout (Official Material 3 Expressive Text Button) -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_logout"
-                        style="@style/Widget.Material3.Button.TextButton"
+                        style="@style/Widget.Material3Expressive.Button.TextButton"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginTop="8dp"
@@ -244,8 +247,9 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Guide Card (Tonal separation) -->
+            <!-- Guide Card (Official M3 Filled Card) -->
             <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Material3.CardView.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

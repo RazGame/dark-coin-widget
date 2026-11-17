@@ -22,9 +22,13 @@ import java.util.Locale
 import kotlin.concurrent.thread
 
 /**
- * Material 3 Expressive & Material You Adaptive App Widget Provider.
- * Supports Dynamic Colors, official Android 12+ corner radii, responsive sizes,
- * and robust multi-state handling (Logged In, Logged Out, Out of date, etc.).
+ * Official Material 3 Expressive & Material You Adaptive App Widget Provider.
+ * Follows Android Widget Guidelines (Tier 1 Quality):
+ * - Official system corner radii (@android:dimen/system_app_widget_background_radius)
+ * - Device dynamic color via Theme.DeviceDefault.DayNight & semantic tokens
+ * - Responsive canonical sizes (2x2, 4x1, 4x2, tall)
+ * - Robust state handling: Logged In, Logged Out, Updating/Loading, Network Error, Out-of-date
+ * - Minimum 48x48dp touch targets and TalkBack accessibility
  */
 class DarksideWidgetProvider : AppWidgetProvider() {
 
@@ -51,6 +55,9 @@ class DarksideWidgetProvider : AppWidgetProvider() {
         if (intent.action == ACTION_REFRESH) {
             val token = AuthManager.token
             if (!token.isNullOrBlank()) {
+                // Instantly indicate loading state on widgets
+                setWidgetsSyncText(context, "Обновление баланса...")
+
                 thread {
                     try {
                         val profile = DarksideApi.getProfile(token)
@@ -60,13 +67,28 @@ class DarksideWidgetProvider : AppWidgetProvider() {
                                 AuthManager.userUuid = profile.uuid
                             }
                             AuthManager.updateBalance(context, profile.balance)
+                        } else {
+                            setWidgetsSyncText(context, "Ошибка сервера • Повторить")
                         }
                     } catch (_: Exception) {
+                        // Network error state
+                        setWidgetsSyncText(context, "Нет связи • Нажмите обновить")
                     }
                 }
             } else {
                 updateAllWidgets(context)
             }
+        }
+    }
+
+    private fun setWidgetsSyncText(context: Context, text: String) {
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val thisWidget = ComponentName(context, DarksideWidgetProvider::class.java)
+        val appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
+        for (id in appWidgetIds) {
+            val views = RemoteViews(context.packageName, R.layout.widget_darkside_4x2)
+            views.setTextViewText(R.id.widget_last_sync_4x2, text)
+            appWidgetManager.partiallyUpdateAppWidget(id, views)
         }
     }
 
@@ -140,7 +162,12 @@ class DarksideWidgetProvider : AppWidgetProvider() {
                 views.setTextViewText(R.id.widget_status_sub_4x2, "Готов к сканированию")
 
                 if (AuthManager.lastSyncTimestamp > 0) {
-                    val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+                    val age = System.currentTimeMillis() - AuthManager.lastSyncTimestamp
+                    val timeFormat = if (age > 24 * 3600 * 1000L) {
+                        SimpleDateFormat("dd.MM", Locale.getDefault())
+                    } else {
+                        SimpleDateFormat("HH:mm", Locale.getDefault())
+                    }
                     views.setTextViewText(
                         R.id.widget_last_sync_4x2,
                         "Обновлено в " + timeFormat.format(Date(AuthManager.lastSyncTimestamp))

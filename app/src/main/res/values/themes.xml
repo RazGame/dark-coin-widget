@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme in Material 3 DayNight with Dynamic Color support -->
-    <style name="Theme.Darkside" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Base application theme in official Material 3 Expressive DayNight with Dynamic Color -->
+    <style name="Theme.Darkside" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <!-- Semantic M3 color roles -->
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
