@@ -78,8 +78,9 @@ class DarksideWidgetProvider : AppWidgetProvider() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val viewsMap = mapOf(
                     SizeF(100f, 100f) to build2x2Views(context),
-                    SizeF(220f, 50f) to build4x1Views(context),
-                    SizeF(220f, 110f) to build4x2Views(context)
+                    SizeF(100f, 170f) to buildTallViews(context),
+                    SizeF(265f, 50f) to build4x1Views(context),
+                    SizeF(265f, 110f) to build4x2Views(context)
                 )
                 return RemoteViews(viewsMap)
             }
@@ -89,10 +90,21 @@ class DarksideWidgetProvider : AppWidgetProvider() {
             val minHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 140)
 
             return when {
-                minHeight < 100 -> build4x1Views(context)
-                minWidth < 180 -> build2x2Views(context)
-                else -> build4x2Views(context)
+                minWidth >= 265 && minHeight >= 110 -> build4x2Views(context)
+                minWidth >= 265 -> build4x1Views(context)
+                minHeight >= 170 -> buildTallViews(context)
+                else -> build2x2Views(context)
             }
+        }
+
+        private fun buildTallViews(context: Context): RemoteViews {
+            val views = RemoteViews(context.packageName, R.layout.widget_darkside_tall)
+            val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
+            views.setTextViewText(R.id.widget_balance_tall, balanceStr)
+            views.setTextViewText(R.id.widget_user_name_tall, AuthManager.userName)
+
+            setupIntents(context, views, R.id.widget_root_tall, R.id.widget_btn_scan_tall, null)
+            return views
         }
 
         private fun build4x2Views(context: Context): RemoteViews {
