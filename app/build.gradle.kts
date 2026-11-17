@@ -30,8 +30,8 @@ android {
         applicationId = "com.darkcoin.widget"
         minSdk = 26
         targetSdk = 35
-        versionCode = 17
-        versionName = "1.2.9"
+        versionCode = 18
+        versionName = "1.0.0"
 
         // Strip out unused language strings to keep APK footprint minimal
         resourceConfigurations += listOf("ru")
