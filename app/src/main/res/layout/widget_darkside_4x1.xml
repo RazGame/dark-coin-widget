@@ -18,8 +18,8 @@
         android:background="@drawable/bg_widget_inner_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="12dp"
-        android:paddingEnd="14dp">
+        android:paddingStart="10dp"
+        android:paddingEnd="12dp">
 
         <ImageView
             android:layout_width="20dp"
@@ -31,22 +31,22 @@
             android:id="@+id/widget_balance_4x1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/unisans_heavy"
             android:singleLine="true"
             android:text="1 781"
             android:textColor="@color/ds_text_primary"
-            android:textSize="17sp"
-            android:textStyle="bold" />
+            android:textSize="17sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/unisans_bold"
             android:singleLine="true"
-            android:text="©"
+            android:text="@string/coins_unit"
             android:textColor="@color/ds_primary"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textSize="9sp" />
     </LinearLayout>
 
     <!-- Right: Big Prominent Hero Button (Takes majority of width) -->
@@ -74,11 +74,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:fontFamily="@font/unisans_bold"
             android:singleLine="true"
             android:text="СКАНИРОВАТЬ QR"
             android:textColor="@color/ds_on_primary_container"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textSize="12sp" />
     </LinearLayout>
 
 </LinearLayout>

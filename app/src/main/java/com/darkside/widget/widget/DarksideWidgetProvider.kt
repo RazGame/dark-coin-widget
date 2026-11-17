@@ -136,7 +136,7 @@ class DarksideWidgetProvider : AppWidgetProvider() {
 
         private fun build2x2Views(context: Context): RemoteViews {
             val views = RemoteViews(context.packageName, R.layout.widget_darkside_2x2)
-            val balanceStr = String.format(Locale.getDefault(), "%,d ©", AuthManager.balance).replace(',', ' ')
+            val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
             views.setTextViewText(R.id.widget_balance_2x2, balanceStr)
 
             setupIntents(context, views, R.id.widget_root_2x2, R.id.widget_btn_scan_2x2, null)

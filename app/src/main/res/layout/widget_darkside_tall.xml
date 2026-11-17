@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root_tall"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_widget_container"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Top: User Name & Sync Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_user"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/widget_user_name_tall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/unisans_bold"
+            android:singleLine="true"
+            android:text="Михаил"
+            android:textColor="@color/ds_text_primary"
+            android:textSize="12sp" />
+
+        <!-- Top Right: Refresh Button -->
+        <ImageView
+            android:id="@+id/widget_btn_refresh_tall"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/bg_pill_badge"
+            android:contentDescription="@string/refresh_btn"
+            android:padding="5dp"
+            android:src="@drawable/ic_refresh" />
+    </LinearLayout>
+
+    <!-- Center: Balance Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_widget_inner_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_coin"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:singleLine="true"
+            android:text="@string/balance_label"
+            android:textColor="@color/ds_text_secondary"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/widget_balance_tall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/unisans_heavy"
+            android:singleLine="true"
+            android:text="1 781"
+            android:textColor="@color/ds_text_primary"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/unisans_bold"
+            android:singleLine="true"
+            android:text="@string/coins_unit"
+            android:textColor="@color/ds_primary"
+            android:textSize="9sp" />
+    </LinearLayout>
+
+    <!-- Bottom: Scan Hero Button -->
+    <LinearLayout
+        android:id="@+id/widget_btn_scan_tall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_widget_action_card"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/bg_widget_circle_icon_dark"
+            android:contentDescription="@string/scan_qr"
+            android:padding="5dp"
+            android:src="@drawable/ic_scan_qr_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/unisans_bold"
+            android:singleLine="true"
+            android:text="@string/scan_qr_short"
+            android:textColor="@color/ds_on_primary_container"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
