@@ -30,17 +30,17 @@
             android:fontFamily="@font/unisans_bold"
             android:singleLine="true"
             android:text="Михаил"
-            android:textColor="@color/ds_text_primary"
+            android:textColor="@color/widget_text_primary"
             android:textSize="12sp" />
 
-        <!-- Top Right: Refresh Button -->
+        <!-- Top Right: Refresh Button (48x48dp touch target) -->
         <ImageView
             android:id="@+id/widget_btn_refresh_tall"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/bg_pill_badge"
             android:contentDescription="@string/refresh_btn"
-            android:padding="5dp"
+            android:padding="13dp"
             android:src="@drawable/ic_refresh" />
     </LinearLayout>
 
@@ -68,7 +68,7 @@
             android:layout_marginTop="4dp"
             android:singleLine="true"
             android:text="@string/balance_label"
-            android:textColor="@color/ds_text_secondary"
+            android:textColor="@color/widget_text_secondary"
             android:textSize="10sp" />
 
         <TextView
@@ -79,39 +79,38 @@
             android:fontFamily="@font/unisans_heavy"
             android:singleLine="true"
             android:text="1 781"
-            android:textColor="@color/ds_text_primary"
+            android:textColor="@color/widget_text_primary"
             android:textSize="22sp" />
 
         <TextView
+            android:id="@+id/widget_coins_label_tall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/unisans_bold"
             android:singleLine="true"
             android:text="@string/coins_unit"
-            android:textColor="@color/ds_primary"
+            android:textColor="@color/widget_accent"
             android:textSize="9sp" />
     </LinearLayout>
 
-    <!-- Bottom: Scan Hero Button -->
+    <!-- Bottom: Scan Hero Button (Min 48dp height) -->
     <LinearLayout
         android:id="@+id/widget_btn_scan_tall"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:background="@drawable/bg_widget_action_card"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp">
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/bg_widget_circle_icon_dark"
-            android:contentDescription="@string/scan_qr"
-            android:padding="5dp"
-            android:src="@drawable/ic_scan_qr_white" />
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_scan_qr"
+            android:contentDescription="@string/scan_qr" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -119,9 +118,9 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/unisans_bold"
             android:singleLine="true"
-            android:text="@string/scan_qr_short"
-            android:textColor="@color/ds_on_primary_container"
-            android:textSize="12sp" />
+            android:text="@string/scan_qr"
+            android:textColor="@color/widget_action_card_text"
+            android:textSize="11sp" />
     </LinearLayout>
 
 </LinearLayout>

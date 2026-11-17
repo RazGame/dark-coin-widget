@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Fallback corner radii for pre-Android 12 (API < 31) -->
+    <dimen name="widget_background_radius">28dp</dimen>
+    <dimen name="widget_inner_radius">20dp</dimen>
+    <dimen name="widget_touch_target_min">48dp</dimen>
+</resources>

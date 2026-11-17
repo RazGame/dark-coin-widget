@@ -31,7 +31,7 @@ object AuthManager {
         set(value) = prefs.edit().putString(KEY_USER_UUID, value).apply()
 
     var userName: String
-        get() = prefs.getString(KEY_USER_NAME, "Михаил") ?: "Михаил"
+        get() = prefs.getString(KEY_USER_NAME, if (isLoggedIn) "Пользователь" else "Darkside") ?: "Darkside"
         set(value) = prefs.edit().putString(KEY_USER_NAME, value).apply()
 
     var balance: Int

@@ -35,27 +35,28 @@
                 android:fontFamily="@font/unisans_bold"
                 android:singleLine="true"
                 android:text="DARKSIDE"
-                android:textColor="@color/ds_text_primary"
+                android:textColor="@color/widget_text_primary"
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/widget_club_label_4x2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text="DARKSIDE CLUB"
-                android:textColor="@color/ds_text_secondary"
+                android:textColor="@color/widget_text_secondary"
                 android:textSize="8sp"
                 android:textAllCaps="true" />
         </LinearLayout>
 
-        <!-- Top Right: Refresh Button -->
+        <!-- Top Right: Refresh Button (Min 48x48dp touch target) -->
         <ImageView
             android:id="@+id/widget_btn_refresh_4x2"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/bg_pill_badge"
             android:contentDescription="@string/refresh_btn"
-            android:padding="6dp"
+            android:padding="13dp"
             android:src="@drawable/ic_refresh" />
     </LinearLayout>
 
@@ -84,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text="@string/balance_label"
-                android:textColor="@color/ds_text_secondary"
+                android:textColor="@color/widget_text_secondary"
                 android:textSize="10sp" />
 
             <LinearLayout
@@ -108,17 +109,18 @@
                     android:fontFamily="@font/unisans_heavy"
                     android:singleLine="true"
                     android:text="1 781"
-                    android:textColor="@color/ds_text_primary"
+                    android:textColor="@color/widget_text_primary"
                     android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/widget_coins_label_4x2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/unisans_bold"
                     android:singleLine="true"
                     android:text="@string/coins_unit"
-                    android:textColor="@color/ds_primary"
+                    android:textColor="@color/widget_accent"
                     android:textSize="9sp" />
             </LinearLayout>
 
@@ -130,11 +132,11 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="Готов к сканированию"
-                android:textColor="@color/ds_text_tertiary"
+                android:textColor="@color/widget_text_tertiary"
                 android:textSize="9sp" />
         </LinearLayout>
 
-        <!-- Right: Scan Action Card -->
+        <!-- Right: Scan Action Card (Min 48dp touch target) -->
         <LinearLayout
             android:id="@+id/widget_btn_scan_4x2"
             android:layout_width="0dp"
@@ -146,15 +148,13 @@
             android:focusable="true"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="12dp">
 
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:background="@drawable/bg_widget_circle_icon_dark"
                 android:contentDescription="@string/scan_qr"
-                android:padding="5dp"
-                android:src="@drawable/ic_scan_qr_white" />
+                android:src="@drawable/ic_scan_qr" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
                 android:fontFamily="@font/unisans_bold"
                 android:singleLine="true"
                 android:text="@string/scan_qr"
-                android:textColor="@color/ds_on_primary_container"
+                android:textColor="@color/widget_action_card_text"
                 android:textSize="11sp" />
 
             <TextView
@@ -173,7 +173,7 @@
                 android:ellipsize="none"
                 android:singleLine="true"
                 android:text="@string/scan_qr_subtitle"
-                android:textColor="@color/ds_on_primary_container"
+                android:textColor="@color/widget_action_card_text"
                 android:textSize="9sp" />
         </LinearLayout>
     </LinearLayout>
@@ -193,7 +193,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="Нажми для быстрого сканирования"
-            android:textColor="@color/ds_text_tertiary"
+            android:textColor="@color/widget_text_tertiary"
             android:textSize="9sp" />
 
         <TextView
@@ -202,7 +202,7 @@
             android:fontFamily="@font/unisans_bold"
             android:singleLine="true"
             android:text="DARKSIDE WORLD"
-            android:textColor="@color/ds_primary"
+            android:textColor="@color/widget_accent"
             android:textSize="9sp" />
     </LinearLayout>
 

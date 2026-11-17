@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material 3 Dark Theme Fallback (pre-Android 12) - Authentic Darkside Palette -->
+    <color name="md_theme_primary">#D0BCFF</color>
+    <color name="md_theme_onPrimary">#381E72</color>
+    <color name="md_theme_primaryContainer">#EADDFF</color>
+    <color name="md_theme_onPrimaryContainer">#21005D</color>
+    
+    <color name="md_theme_secondary">#CCC2DC</color>
+    <color name="md_theme_onSecondary">#332D41</color>
+    <color name="md_theme_secondaryContainer">#4A4458</color>
+    <color name="md_theme_onSecondaryContainer">#E8DEF8</color>
+    
+    <color name="md_theme_surface">#141218</color>
+    <color name="md_theme_onSurface">#E6E0E9</color>
+    <color name="md_theme_surfaceVariant">#272535</color>
+    <color name="md_theme_onSurfaceVariant">#CAC4D0</color>
+    
+    <color name="md_theme_surfaceContainer">#1C1B24</color>
+    <color name="md_theme_surfaceContainerHigh">#272535</color>
+    <color name="md_theme_surfaceContainerLow">#121316</color>
+    
+    <color name="md_theme_outline">#938F99</color>
+    <color name="md_theme_outlineVariant">#3A374C</color>
+    <color name="md_theme_background">#121316</color>
+    <color name="md_theme_onBackground">#E6E0E9</color>
+    <color name="md_theme_error">#FFB4AB</color>
+    <color name="md_theme_onError">#690005</color>
+    <color name="md_theme_success">#81C784</color>
+
+    <!-- Semantic Widget Color Tokens (Dark Fallback) -->
+    <color name="widget_background">@color/md_theme_surfaceContainer</color>
+    <color name="widget_inner_surface">@color/md_theme_surfaceContainerHigh</color>
+    <color name="widget_action_card_bg">@color/md_theme_primaryContainer</color>
+    <color name="widget_action_card_text">@color/md_theme_onPrimaryContainer</color>
+    <color name="widget_text_primary">#F4F2F7</color>
+    <color name="widget_text_secondary">#A5A4AF</color>
+    <color name="widget_text_tertiary">#7B7988</color>
+    <color name="widget_accent">@color/md_theme_primary</color>
+    <color name="widget_stroke">@color/md_theme_outlineVariant</color>
+    <color name="widget_icon_tint">#A5A4AF</color>
+    <color name="widget_coin_tint">#FFFFFF</color>
+    <color name="brand_logo_color">#FFFFFF</color>
+</resources>

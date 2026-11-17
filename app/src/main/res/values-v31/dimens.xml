@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Official Android 12+ (API 31+) system app widget radius tokens -->
+    <dimen name="widget_background_radius">@android:dimen/system_app_widget_background_radius</dimen>
+    <dimen name="widget_inner_radius">@android:dimen/system_app_widget_inner_radius</dimen>
+    <dimen name="widget_touch_target_min">48dp</dimen>
+</resources>

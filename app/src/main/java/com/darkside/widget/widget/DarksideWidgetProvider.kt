@@ -14,12 +14,18 @@ import com.darkside.widget.R
 import com.darkside.widget.api.DarksideApi
 import com.darkside.widget.auth.AuthManager
 import com.darkside.widget.scanner.QrScannerActivity
+import com.darkside.widget.ui.LoginActivity
 import com.darkside.widget.ui.MainActivity
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import kotlin.concurrent.thread
 
+/**
+ * Material 3 Expressive & Material You Adaptive App Widget Provider.
+ * Supports Dynamic Colors, official Android 12+ corner radii, responsive sizes,
+ * and robust multi-state handling (Logged In, Logged Out, Out of date, etc.).
+ */
 class DarksideWidgetProvider : AppWidgetProvider() {
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
@@ -50,11 +56,16 @@ class DarksideWidgetProvider : AppWidgetProvider() {
                         val profile = DarksideApi.getProfile(token)
                         if (profile != null) {
                             AuthManager.userName = profile.name
+                            if (profile.uuid != null) {
+                                AuthManager.userUuid = profile.uuid
+                            }
                             AuthManager.updateBalance(context, profile.balance)
                         }
                     } catch (_: Exception) {
                     }
                 }
+            } else {
+                updateAllWidgets(context)
             }
         }
     }
@@ -99,47 +110,90 @@ class DarksideWidgetProvider : AppWidgetProvider() {
 
         private fun buildTallViews(context: Context): RemoteViews {
             val views = RemoteViews(context.packageName, R.layout.widget_darkside_tall)
-            val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
-            views.setTextViewText(R.id.widget_balance_tall, balanceStr)
-            views.setTextViewText(R.id.widget_user_name_tall, AuthManager.userName)
+            val isLoggedIn = AuthManager.isLoggedIn
 
-            setupIntents(context, views, R.id.widget_root_tall, R.id.widget_btn_scan_tall, R.id.widget_btn_refresh_tall)
+            if (isLoggedIn) {
+                val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
+                views.setTextViewText(R.id.widget_balance_tall, balanceStr)
+                views.setTextViewText(R.id.widget_user_name_tall, AuthManager.userName)
+                views.setTextViewText(R.id.widget_coins_label_tall, context.getString(R.string.coins_unit))
+                setupIntents(context, views, R.id.widget_root_tall, R.id.widget_btn_scan_tall, R.id.widget_btn_refresh_tall, isLoggedIn)
+            } else {
+                views.setTextViewText(R.id.widget_balance_tall, "—")
+                views.setTextViewText(R.id.widget_user_name_tall, "Darkside")
+                views.setTextViewText(R.id.widget_coins_label_tall, "Вход")
+                setupIntents(context, views, R.id.widget_root_tall, R.id.widget_btn_scan_tall, null, isLoggedIn)
+            }
+
             return views
         }
 
         private fun build4x2Views(context: Context): RemoteViews {
             val views = RemoteViews(context.packageName, R.layout.widget_darkside_4x2)
-            val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
-            views.setTextViewText(R.id.widget_balance_4x2, balanceStr)
-            views.setTextViewText(R.id.widget_user_name_4x2, AuthManager.userName)
+            val isLoggedIn = AuthManager.isLoggedIn
 
-            if (AuthManager.lastSyncTimestamp > 0) {
-                val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-                views.setTextViewText(
-                    R.id.widget_last_sync_4x2,
-                    "Обновлено в " + timeFormat.format(Date(AuthManager.lastSyncTimestamp))
-                )
+            if (isLoggedIn) {
+                val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
+                views.setTextViewText(R.id.widget_balance_4x2, balanceStr)
+                views.setTextViewText(R.id.widget_user_name_4x2, AuthManager.userName)
+                views.setTextViewText(R.id.widget_coins_label_4x2, context.getString(R.string.coins_unit))
+                views.setTextViewText(R.id.widget_status_sub_4x2, "Готов к сканированию")
+
+                if (AuthManager.lastSyncTimestamp > 0) {
+                    val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+                    views.setTextViewText(
+                        R.id.widget_last_sync_4x2,
+                        "Обновлено в " + timeFormat.format(Date(AuthManager.lastSyncTimestamp))
+                    )
+                } else {
+                    views.setTextViewText(R.id.widget_last_sync_4x2, "Нажми для быстрого сканирования")
+                }
+                setupIntents(context, views, R.id.widget_root_4x2, R.id.widget_btn_scan_4x2, R.id.widget_btn_refresh_4x2, isLoggedIn)
+            } else {
+                views.setTextViewText(R.id.widget_balance_4x2, "—")
+                views.setTextViewText(R.id.widget_user_name_4x2, "Darkside World")
+                views.setTextViewText(R.id.widget_coins_label_4x2, "")
+                views.setTextViewText(R.id.widget_status_sub_4x2, "Нажмите для входа")
+                views.setTextViewText(R.id.widget_last_sync_4x2, "Требуется авторизация")
+                setupIntents(context, views, R.id.widget_root_4x2, R.id.widget_btn_scan_4x2, null, isLoggedIn)
             }
 
-            setupIntents(context, views, R.id.widget_root_4x2, R.id.widget_btn_scan_4x2, R.id.widget_btn_refresh_4x2)
             return views
         }
 
         private fun build4x1Views(context: Context): RemoteViews {
             val views = RemoteViews(context.packageName, R.layout.widget_darkside_4x1)
-            val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
-            views.setTextViewText(R.id.widget_balance_4x1, balanceStr)
+            val isLoggedIn = AuthManager.isLoggedIn
 
-            setupIntents(context, views, R.id.widget_root_4x1, R.id.widget_btn_scan_4x1, null)
+            if (isLoggedIn) {
+                val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
+                views.setTextViewText(R.id.widget_balance_4x1, balanceStr)
+                views.setTextViewText(R.id.widget_coins_label_4x1, context.getString(R.string.coins_unit))
+                setupIntents(context, views, R.id.widget_root_4x1, R.id.widget_btn_scan_4x1, null, isLoggedIn)
+            } else {
+                views.setTextViewText(R.id.widget_balance_4x1, "—")
+                views.setTextViewText(R.id.widget_coins_label_4x1, "Вход")
+                setupIntents(context, views, R.id.widget_root_4x1, R.id.widget_btn_scan_4x1, null, isLoggedIn)
+            }
+
             return views
         }
 
         private fun build2x2Views(context: Context): RemoteViews {
             val views = RemoteViews(context.packageName, R.layout.widget_darkside_2x2)
-            val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
-            views.setTextViewText(R.id.widget_balance_2x2, balanceStr)
+            val isLoggedIn = AuthManager.isLoggedIn
 
-            setupIntents(context, views, R.id.widget_root_2x2, R.id.widget_btn_scan_2x2, null)
+            if (isLoggedIn) {
+                val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
+                views.setTextViewText(R.id.widget_balance_2x2, balanceStr)
+                views.setTextViewText(R.id.widget_coins_label_2x2, context.getString(R.string.coins_unit))
+                setupIntents(context, views, R.id.widget_root_2x2, R.id.widget_btn_scan_2x2, null, isLoggedIn)
+            } else {
+                views.setTextViewText(R.id.widget_balance_2x2, "—")
+                views.setTextViewText(R.id.widget_coins_label_2x2, "Вход")
+                setupIntents(context, views, R.id.widget_root_2x2, R.id.widget_btn_scan_2x2, null, isLoggedIn)
+            }
+
             return views
         }
 
@@ -148,10 +202,12 @@ class DarksideWidgetProvider : AppWidgetProvider() {
             views: RemoteViews,
             rootId: Int,
             scanBtnId: Int,
-            refreshBtnId: Int?
+            refreshBtnId: Int?,
+            isLoggedIn: Boolean
         ) {
-            // Open Main App on Root Click
-            val appIntent = Intent(context, MainActivity::class.java).apply {
+            // Open Main App on Root Click (or LoginActivity if logged out)
+            val targetActivityClass = if (isLoggedIn) MainActivity::class.java else LoginActivity::class.java
+            val appIntent = Intent(context, targetActivityClass).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             }
             val appPendingIntent = PendingIntent.getActivity(
@@ -162,8 +218,9 @@ class DarksideWidgetProvider : AppWidgetProvider() {
             )
             views.setOnClickPendingIntent(rootId, appPendingIntent)
 
-            // Open Instant QR Scanner on Scan Button Click
-            val scanIntent = Intent(context, QrScannerActivity::class.java).apply {
+            // Open Instant QR Scanner on Scan Button Click (or Login if logged out)
+            val scanTargetClass = if (isLoggedIn) QrScannerActivity::class.java else LoginActivity::class.java
+            val scanIntent = Intent(context, scanTargetClass).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             }
             val scanPendingIntent = PendingIntent.getActivity(
@@ -175,7 +232,7 @@ class DarksideWidgetProvider : AppWidgetProvider() {
             views.setOnClickPendingIntent(scanBtnId, scanPendingIntent)
 
             // Refresh action
-            if (refreshBtnId != null) {
+            if (refreshBtnId != null && isLoggedIn) {
                 val refreshIntent = Intent(context, DarksideWidgetProvider::class.java).apply {
                     action = ACTION_REFRESH
                 }

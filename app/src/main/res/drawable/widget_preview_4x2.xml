@@ -5,63 +5,63 @@
     android:viewportWidth="280"
     android:viewportHeight="130">
 
-    <!-- Container Card (Dark Surface) -->
+    <!-- Container Card (Dynamic Background) -->
     <path
-        android:fillColor="#1D1E22"
+        android:fillColor="@color/widget_background"
         android:pathData="M16,0 H264 A16,16 0 0 1 280,16 V114 A16,16 0 0 1 264,130 H16 A16,16 0 0 1 0,114 V16 A16,16 0 0 1 16,0 Z" />
 
     <!-- User Header (Avatar + Name) -->
     <path
-        android:fillColor="#8C8D94"
+        android:fillColor="@color/widget_accent"
         android:pathData="M24,20 A6,6 0 1 1 24,20.1 Z" />
     <path
-        android:fillColor="#F2F2F5"
+        android:fillColor="@color/widget_text_primary"
         android:pathData="M36,16 H80 V22 H36 Z" />
     <path
-        android:fillColor="#8C8D94"
+        android:fillColor="@color/widget_text_secondary"
         android:pathData="M36,24 H70 V27 H36 Z" />
 
     <!-- Refresh button icon top right -->
     <path
-        android:fillColor="#2A2B32"
+        android:fillColor="@color/widget_inner_surface"
         android:pathData="M256,12 A10,10 0 1 1 256,12.1 Z" />
 
     <!-- Left Card: Balance Card -->
     <path
-        android:fillColor="#25262C"
+        android:fillColor="@color/widget_inner_surface"
         android:pathData="M12,38 H134 A12,12 0 0 1 146,50 V94 A12,12 0 0 1 134,106 H12 A12,12 0 0 1 0,94 V50 A12,12 0 0 1 12,38 Z"
         android:translateX="12" />
 
     <!-- Coin Ring + D inside left card -->
     <path
-        android:fillColor="#FFFFFF"
+        android:fillColor="@color/widget_coin_tint"
         android:pathData="M34,64 A6,6 0 1 1 34,64.1 Z M34,65 A5,5 0 1 0 34,65.1 Z" />
     <!-- Balance text line -->
     <path
-        android:fillColor="#FFFFFF"
+        android:fillColor="@color/widget_text_primary"
         android:pathData="M44,60 H85 V70 H44 Z" />
     <path
-        android:fillColor="#A87BFF"
+        android:fillColor="@color/widget_accent"
         android:pathData="M90,64 H130 V68 H90 Z" />
 
-    <!-- Right Card: Scan Button (Purple Squircle) -->
+    <!-- Right Card: Scan Button (Dynamic Primary Container Squircle) -->
     <path
-        android:fillColor="#E8DEF8"
+        android:fillColor="@color/widget_action_card_bg"
         android:pathData="M164,38 H248 A16,16 0 0 1 264,54 V90 A16,16 0 0 1 248,106 H164 A16,16 0 0 1 148,90 V54 A16,16 0 0 1 164,38 Z" />
 
     <!-- Scan text & icon in button -->
     <path
-        android:fillColor="#21005D"
+        android:fillColor="@color/widget_action_card_text"
         android:pathData="M176,52 H190 V66 H176 Z" />
     <path
-        android:fillColor="#21005D"
+        android:fillColor="@color/widget_action_card_text"
         android:pathData="M176,74 H240 V82 H176 Z" />
     <path
-        android:fillColor="#49454F"
+        android:fillColor="@color/widget_action_card_text"
         android:pathData="M176,86 H220 V91 H176 Z" />
 
     <!-- Footer DARKSIDE WORLD -->
     <path
-        android:fillColor="#A87BFF"
+        android:fillColor="@color/widget_accent"
         android:pathData="M200,116 H264 V121 H200 Z" />
 </vector>

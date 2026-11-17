@@ -42,6 +42,13 @@ class MainActivity : AppCompatActivity() {
             windowInsets
         }
 
+        // Ensure status bar & navigation bar icons match day/night appearance
+        val isNightMode = (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) == android.content.res.Configuration.UI_MODE_NIGHT_YES
+        androidx.core.view.WindowInsetsControllerCompat(window, window.decorView).apply {
+            isAppearanceLightStatusBars = !isNightMode
+            isAppearanceLightNavigationBars = !isNightMode
+        }
+
         setupClickListeners()
     }
 

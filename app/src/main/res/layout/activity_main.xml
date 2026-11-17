@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ds_background">
+    android:background="?android:attr/colorBackground">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -16,7 +17,7 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Top Header -->
+            <!-- Top Header: Logo -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,11 +32,6 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/ic_darkside_logo" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
             </LinearLayout>
 
             <!-- State 1: Not Logged In Card -->
@@ -44,10 +40,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:cardBackgroundColor="@color/ds_surface"
+                app:cardBackgroundColor="?attr/colorSurfaceContainer"
                 app:cardCornerRadius="24dp"
-                app:strokeColor="@color/ds_stroke"
-                app:strokeWidth="1dp">
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -58,40 +54,41 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/unisans_bold"
                         android:text="@string/not_logged_in"
-                        android:textColor="@color/ds_text_primary"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="17sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:text="@string/tap_to_login"
-                        android:textColor="@color/ds_text_secondary"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="13sp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_login"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_height="54dp"
+                        android:layout_marginTop="18dp"
+                        android:fontFamily="@font/unisans_bold"
                         android:text="@string/login_btn"
-                        android:textColor="@color/ds_on_primary_container"
-                        app:backgroundTint="@color/ds_primary_container"
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        app:backgroundTint="?attr/colorPrimaryContainer"
                         app:cornerRadius="100dp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- State 2: Logged In Dashboard Card -->
+            <!-- State 2: Logged In Dashboard Card (Material 3 Expressive Tonal Surface) -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_logged_in"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/ds_surface"
+                app:cardBackgroundColor="?attr/colorSurfaceContainer"
                 app:cardCornerRadius="28dp"
-                app:strokeColor="@color/ds_stroke"
-                app:strokeWidth="1dp">
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -99,6 +96,7 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
+                    <!-- User Row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -122,31 +120,32 @@
                                 android:id="@+id/tv_user_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/unisans_bold"
                                 android:text="Пользователь"
-                                android:textColor="@color/ds_text_primary"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/tv_user_status"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Аккаунт подключен"
-                                android:textColor="@color/ds_online"
+                                android:textColor="?attr/colorPrimary"
                                 android:textSize="11sp" />
                         </LinearLayout>
 
+                        <!-- Refresh Action (Min 48x48dp touch target) -->
                         <ImageView
                             android:id="@+id/btn_refresh"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:background="@drawable/bg_pill_badge"
                             android:contentDescription="@string/refresh_btn"
-                            android:padding="8dp"
+                            android:padding="13dp"
                             android:src="@drawable/ic_refresh" />
                     </LinearLayout>
 
-                    <!-- Balance display -->
+                    <!-- Expressive Hero Balance Card -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -159,7 +158,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/balance_label"
-                            android:textColor="@color/ds_text_secondary"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:textSize="12sp" />
 
                         <LinearLayout
@@ -182,7 +181,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/unisans_heavy"
                                 android:text="0"
-                                android:textColor="@color/ds_text_primary"
+                                android:textColor="?attr/colorOnSurface"
                                 android:textSize="32sp" />
 
                             <TextView
@@ -191,7 +190,7 @@
                                 android:layout_marginStart="8dp"
                                 android:fontFamily="@font/unisans_bold"
                                 android:text="@string/coins_unit"
-                                android:textColor="@color/ds_primary"
+                                android:textColor="?attr/colorPrimary"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
@@ -201,58 +200,59 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="Синхронизировано"
-                            android:textColor="@color/ds_text_tertiary"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:textSize="11sp" />
                     </LinearLayout>
 
-                    <!-- Test Scan Button -->
+                    <!-- Hero Action: Scan QR (Expressive Pill Button) -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_test_scan"
                         android:layout_width="match_parent"
-                        android:layout_height="54dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="18dp"
+                        android:fontFamily="@font/unisans_bold"
                         android:text="@string/test_scan_btn"
-                        android:textColor="@color/ds_on_primary_container"
-                        app:backgroundTint="@color/ds_primary_container"
+                        android:textColor="?attr/colorOnPrimaryContainer"
+                        app:backgroundTint="?attr/colorPrimaryContainer"
                         app:cornerRadius="100dp"
                         app:icon="@drawable/ic_scan_qr"
-                        app:iconTint="@color/ds_on_primary_container" />
+                        app:iconTint="?attr/colorOnPrimaryContainer" />
 
-                    <!-- Pin Widget Button -->
+                    <!-- Secondary Action: Pin Widget (Outlined / Tonal) -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_pin_widget"
+                        style="@style/Widget.Material3.Button.TonalButton"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/unisans_bold"
                         android:text="@string/pin_widget_btn"
-                        android:textColor="@color/ds_primary"
-                        app:backgroundTint="@color/ds_surface_container"
-                        app:cornerRadius="100dp"
-                        app:strokeColor="@color/ds_stroke"
-                        app:strokeWidth="1dp" />
+                        android:textColor="?attr/colorOnSurface"
+                        app:backgroundTint="?attr/colorSurfaceContainerHigh"
+                        app:cornerRadius="100dp" />
 
-                    <!-- Logout Button -->
+                    <!-- Tertiary Action: Logout -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_logout"
                         style="@style/Widget.Material3.Button.TextButton"
                         android:layout_width="match_parent"
-                        android:layout_height="44dp"
+                        android:layout_height="48dp"
                         android:layout_marginTop="8dp"
                         android:text="@string/logout_btn"
-                        android:textColor="@color/ds_error" />
+                        android:textColor="?attr/colorError" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Guide Card -->
+            <!-- Guide Card (Tonal separation) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/ds_surface"
+                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
                 app:cardCornerRadius="24dp"
-                app:strokeColor="@color/ds_stroke"
-                app:strokeWidth="1dp">
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -263,18 +263,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/unisans_bold"
                         android:text="О виджете"
-                        android:textColor="@color/ds_text_primary"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:lineSpacingExtra="3dp"
-                        android:text="Добавьте виджет Darkside на домашний экран вашего Android устройства. Нажмите и удерживайте пустое место на экране -> Виджеты -> Darkside. Виджет адаптивный (поддерживает размеры 2x2, 4x1 и 4x2) и запускает моментальное сканирование пачек!"
-                        android:textColor="@color/ds_text_secondary"
+                        android:text="Добавьте виджет Darkside на домашний экран вашего Android устройства. Виджет адаптивный (поддерживает размеры 2x2, 4x1 и 4x2), следует динамической системной теме Material You и запускает моментальное сканирование пачек!"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="12sp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

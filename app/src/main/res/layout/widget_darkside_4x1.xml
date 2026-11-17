@@ -11,14 +11,14 @@
     android:paddingEnd="10dp"
     android:paddingBottom="8dp">
 
-    <!-- Left: Compact Balance Badge (Takes minimal space) -->
+    <!-- Left: Compact Balance Badge -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@drawable/bg_widget_inner_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="10dp"
+        android:paddingStart="12dp"
         android:paddingEnd="12dp">
 
         <ImageView
@@ -35,21 +35,22 @@
             android:fontFamily="@font/unisans_heavy"
             android:singleLine="true"
             android:text="1 781"
-            android:textColor="@color/ds_text_primary"
+            android:textColor="@color/widget_text_primary"
             android:textSize="17sp" />
 
         <TextView
+            android:id="@+id/widget_coins_label_4x1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:fontFamily="@font/unisans_bold"
             android:singleLine="true"
             android:text="@string/coins_unit"
-            android:textColor="@color/ds_primary"
+            android:textColor="@color/widget_accent"
             android:textSize="9sp" />
     </LinearLayout>
 
-    <!-- Right: Big Prominent Hero Button (Takes majority of width) -->
+    <!-- Right: Big Prominent Hero Button (Min 48dp height) -->
     <LinearLayout
         android:id="@+id/widget_btn_scan_4x1"
         android:layout_width="0dp"
@@ -65,8 +66,8 @@
         android:paddingEnd="16dp">
 
         <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/ic_scan_qr"
             android:contentDescription="@string/scan_qr" />
 
@@ -77,7 +78,7 @@
             android:fontFamily="@font/unisans_bold"
             android:singleLine="true"
             android:text="СКАНИРОВАТЬ QR"
-            android:textColor="@color/ds_on_primary_container"
+            android:textColor="@color/widget_action_card_text"
             android:textSize="12sp" />
     </LinearLayout>
 

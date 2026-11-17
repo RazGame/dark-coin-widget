@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ds_surface"
+    android:background="?attr/colorSurface"
     android:orientation="vertical">
 
     <!-- Top Toolbar -->
@@ -11,11 +11,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/ds_surface"
+        android:background="?attr/colorSurface"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        app:navigationIconTint="@color/ds_text_primary"
+        app:navigationIconTint="?attr/colorOnSurface"
         app:title="@string/title_login"
-        app:titleTextColor="@color/ds_text_primary" />
+        app:titleTextColor="?attr/colorOnSurface" />
 
     <!-- Loading Bar -->
     <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -23,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:indeterminate="true"
-        app:indicatorColor="@color/ds_primary"
-        app:trackColor="@color/ds_surface_variant" />
+        app:indicatorColor="?attr/colorPrimary"
+        app:trackColor="?attr/colorSurfaceContainerHigh" />
 
     <!-- WebView Container -->
     <WebView

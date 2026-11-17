@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Darkside Core Theme (Neo-Noir + M3 Expressive) -->
-    <color name="ds_background">#121316</color>
-    <color name="ds_surface">#1C1B24</color>
-    <color name="ds_surface_variant">#272535</color>
-    <color name="ds_surface_container">#322F44</color>
-    <color name="ds_stroke">#3A374C</color>
+    <!-- Material 3 Light Theme Fallback (pre-Android 12) -->
+    <color name="md_theme_primary">#6750A4</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#EADDFF</color>
+    <color name="md_theme_onPrimaryContainer">#21005D</color>
     
-    <color name="ds_primary">#D0BCFF</color>
-    <color name="ds_on_primary">#381E72</color>
-    <color name="ds_primary_container">#EADDFF</color>
-    <color name="ds_on_primary_container">#21005D</color>
+    <color name="md_theme_secondary">#625B71</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#E8DEF8</color>
+    <color name="md_theme_onSecondaryContainer">#1D192B</color>
     
-    <color name="ds_accent_purple">#A87BFF</color>
-    <color name="ds_gold_coin">#FFD54F</color>
+    <color name="md_theme_surface">#FEF7FF</color>
+    <color name="md_theme_onSurface">#1D1B20</color>
+    <color name="md_theme_surfaceVariant">#E7E0EC</color>
+    <color name="md_theme_onSurfaceVariant">#49454F</color>
     
-    <color name="ds_text_primary">#F4F2F7</color>
-    <color name="ds_text_secondary">#A5A4AF</color>
-    <color name="ds_text_tertiary">#7B7988</color>
+    <color name="md_theme_surfaceContainer">#F3EDF7</color>
+    <color name="md_theme_surfaceContainerHigh">#ECE6F0</color>
+    <color name="md_theme_surfaceContainerLow">#F7F2FA</color>
     
-    <color name="ds_success">#81C784</color>
-    <color name="ds_error">#FFB4AB</color>
-    <color name="ds_online">#4ADE80</color>
+    <color name="md_theme_outline">#79747E</color>
+    <color name="md_theme_outlineVariant">#CAC4D0</color>
+    <color name="md_theme_background">#FEF7FF</color>
+    <color name="md_theme_onBackground">#1D1B20</color>
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_success">#2E7D32</color>
+
+    <!-- Semantic Widget Color Tokens (Light Fallback) -->
+    <color name="widget_background">@color/md_theme_surfaceContainer</color>
+    <color name="widget_inner_surface">@color/md_theme_surface</color>
+    <color name="widget_action_card_bg">@color/md_theme_primaryContainer</color>
+    <color name="widget_action_card_text">@color/md_theme_onPrimaryContainer</color>
+    <color name="widget_text_primary">@color/md_theme_onSurface</color>
+    <color name="widget_text_secondary">@color/md_theme_onSurfaceVariant</color>
+    <color name="widget_text_tertiary">@color/md_theme_outline</color>
+    <color name="widget_accent">@color/md_theme_primary</color>
+    <color name="widget_stroke">@color/md_theme_outlineVariant</color>
+    <color name="widget_icon_tint">@color/md_theme_onSurfaceVariant</color>
+    <color name="widget_coin_tint">@color/md_theme_onSurface</color>
+    <color name="brand_logo_color">#1D1B20</color>
 </resources>

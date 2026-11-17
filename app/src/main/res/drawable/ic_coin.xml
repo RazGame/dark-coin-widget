@@ -4,9 +4,9 @@
     android:viewportWidth="24"
     android:viewportHeight="24">
 
-    <!-- Outer Coin Ring (Pure White) -->
+    <!-- Outer Coin Ring (Semantic Tint for Day/Night/Dynamic Color) -->
     <path
-        android:fillColor="#FFFFFF"
+        android:fillColor="@color/widget_coin_tint"
         android:fillType="evenOdd"
         android:pathData="M12,1 C18.075,1 23,5.925 23,12 C23,18.075 18.075,23 12,23 C5.925,23 1,18.075 1,12 C1,5.925 5.925,1 12,1 Z M12,2.6 C6.809,2.6 2.6,6.809 2.6,12 C2.6,17.191 6.809,21.4 12,21.4 C17.191,21.4 21.4,17.191 21.4,12 C21.4,6.809 17.191,2.6 12,2.6 Z" />
 
@@ -17,7 +17,7 @@
         android:translateX="7.3830"
         android:translateY="5.7935">
         <path
-            android:fillColor="#FFFFFF"
+            android:fillColor="@color/widget_coin_tint"
             android:fillType="evenOdd"
             android:pathData="M22.277 10.363c0-6.71-5.443-9.618-11.252-9.618v.033H.174v28.69h10.851c5.81.032 11.252-2.843 11.252-9.454v-9.651Zm-7.38 9.155c0 1.851-1.134 3.107-3.638 3.107H7.553V7.52h3.706c2.437 0 3.639 1.19 3.639 3.041v8.957Z" />
     </group>
