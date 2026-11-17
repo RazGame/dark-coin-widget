@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer Coin Ring (White) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M54,28 C68.359,28 80,39.641 80,54 C80,68.359 68.359,80 54,80 C39.641,80 28,68.359 28,54 C28,39.641 39.641,28 54,28 Z M54,32 C41.85,32 32,41.85 32,54 C32,66.15 41.85,76 54,76 C66.15,76 76,66.15 76,54 C76,41.85 66.15,32 54,32 Z" />
+
+    <!-- Center Authentic D Monogram -->
+    <group
+        android:scaleX="0.9759"
+        android:scaleY="0.9759"
+        android:translateX="43.045"
+        android:translateY="39.274">
+        <path
+            android:fillColor="#FFFFFF"
+            android:fillType="evenOdd"
+            android:pathData="M22.277 10.363c0-6.71-5.443-9.618-11.252-9.618v.033H.174v28.69h10.851c5.81.032 11.252-2.843 11.252-9.454v-9.651Zm-7.38 9.155c0 1.851-1.134 3.107-3.638 3.107H7.553V7.52h3.706c2.437 0 3.639 1.19 3.639 3.041v8.957Z" />
+    </group>
+</vector>
