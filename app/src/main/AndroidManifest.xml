@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".DarksideApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_darkside_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_darkside_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Darkside">
+
+        <!-- Main Home / Dashboard Screen -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- WebView Login Activity for one-time seamless auth -->
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false"
+            android:label="@string/title_login"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Fast Scan Launcher (Translucent, launches Google Code Scanner directly) -->
+        <activity
+            android:name=".scanner.QrScannerActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Darkside.Translucent"
+            android:excludeFromRecents="true"
+            android:noHistory="true" />
+
+        <!-- Material 3 Expressive Adaptive App Widget -->
+        <receiver
+            android:name=".widget.DarksideWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.darkside.widget.ACTION_REFRESH" />
+                <action android:name="com.darkside.widget.ACTION_SCAN" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/darkside_widget_info" />
+        </receiver>
+
+    </application>
+
+</manifest>

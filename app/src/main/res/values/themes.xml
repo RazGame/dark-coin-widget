@@ -1,0 +1,22 @@
+<resources>
+    <!-- Base application theme in Material 3 -->
+    <style name="Theme.Darkside" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@color/ds_background</item>
+        <item name="android:statusBarColor">@color/ds_background</item>
+        <item name="android:navigationBarColor">@color/ds_background</item>
+        <item name="colorPrimary">@color/ds_primary</item>
+        <item name="colorOnPrimary">@color/ds_on_primary</item>
+        <item name="colorSurface">@color/ds_surface</item>
+        <item name="colorOnSurface">@color/ds_text_primary</item>
+    </style>
+
+    <!-- Translucent theme for Google Code Scanner launch from widget -->
+    <style name="Theme.Darkside.Translucent" parent="Theme.Darkside">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>

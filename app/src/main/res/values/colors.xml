@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Darkside Core Theme (Neo-Noir + M3 Expressive) -->
+    <color name="ds_background">#121316</color>
+    <color name="ds_surface">#1C1B24</color>
+    <color name="ds_surface_variant">#272535</color>
+    <color name="ds_surface_container">#322F44</color>
+    <color name="ds_stroke">#3A374C</color>
+    
+    <color name="ds_primary">#D0BCFF</color>
+    <color name="ds_on_primary">#381E72</color>
+    <color name="ds_primary_container">#EADDFF</color>
+    <color name="ds_on_primary_container">#21005D</color>
+    
+    <color name="ds_accent_purple">#A87BFF</color>
+    <color name="ds_gold_coin">#FFD54F</color>
+    
+    <color name="ds_text_primary">#F4F2F7</color>
+    <color name="ds_text_secondary">#A5A4AF</color>
+    <color name="ds_text_tertiary">#7B7988</color>
+    
+    <color name="ds_success">#81C784</color>
+    <color name="ds_error">#FFB4AB</color>
+    <color name="ds_online">#4ADE80</color>
+</resources>
