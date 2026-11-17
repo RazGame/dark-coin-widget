@@ -103,7 +103,7 @@ class DarksideWidgetProvider : AppWidgetProvider() {
             views.setTextViewText(R.id.widget_balance_tall, balanceStr)
             views.setTextViewText(R.id.widget_user_name_tall, AuthManager.userName)
 
-            setupIntents(context, views, R.id.widget_root_tall, R.id.widget_btn_scan_tall, null)
+            setupIntents(context, views, R.id.widget_root_tall, R.id.widget_btn_scan_tall, R.id.widget_btn_refresh_tall)
             return views
         }
 
@@ -129,7 +129,6 @@ class DarksideWidgetProvider : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.widget_darkside_4x1)
             val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
             views.setTextViewText(R.id.widget_balance_4x1, balanceStr)
-            views.setTextViewText(R.id.widget_user_name_4x1, AuthManager.userName)
 
             setupIntents(context, views, R.id.widget_root_4x1, R.id.widget_btn_scan_4x1, null)
             return views

@@ -6,94 +6,78 @@
     android:background="@drawable/bg_widget_container"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingStart="14dp"
+    android:paddingStart="10dp"
     android:paddingTop="8dp"
-    android:paddingEnd="12dp"
+    android:paddingEnd="10dp"
     android:paddingBottom="8dp">
 
-    <!-- Left: Coin icon + Balance -->
-    <ImageView
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:src="@drawable/ic_coin"
-        android:contentDescription="@string/app_name" />
-
+    <!-- Left: Compact Balance Badge (Takes minimal space) -->
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_widget_inner_card"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:paddingStart="12dp"
+        android:paddingEnd="14dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_coin"
+            android:contentDescription="@string/app_name" />
 
         <TextView
-            android:id="@+id/widget_user_name_4x1"
+            android:id="@+id/widget_balance_4x1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:layout_marginStart="8dp"
             android:singleLine="true"
-            android:text="Михаил"
-            android:textColor="@color/ds_text_secondary"
-            android:textSize="10sp" />
+            android:text="1 781"
+            android:textColor="@color/ds_text_primary"
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/widget_balance_4x1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="1 781"
-                android:textColor="@color/ds_text_primary"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginBottom="1dp"
-                android:singleLine="true"
-                android:text="COINS"
-                android:textColor="@color/ds_primary"
-                android:textSize="9sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:layout_marginStart="3dp"
+            android:singleLine="true"
+            android:text="©"
+            android:textColor="@color/ds_primary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Right: Pill Button "Сканировать" -->
+    <!-- Right: Big Prominent Hero Button (Takes majority of width) -->
     <LinearLayout
         android:id="@+id/widget_btn_scan_4x1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
         android:background="@drawable/bg_widget_pill_button"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingStart="14dp"
-        android:paddingTop="9dp"
-        android:paddingEnd="14dp"
-        android:paddingBottom="9dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:src="@drawable/ic_scan_qr"
             android:contentDescription="@string/scan_qr" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="8dp"
             android:singleLine="true"
-            android:text="@string/scan_qr_short"
+            android:text="СКАНИРОВАТЬ QR"
             android:textColor="@color/ds_on_primary_container"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>
 

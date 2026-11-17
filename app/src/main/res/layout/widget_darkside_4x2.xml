@@ -48,32 +48,15 @@
                 android:textAllCaps="true" />
         </LinearLayout>
 
-        <!-- Status Tag / Refresh button -->
-        <LinearLayout
+        <!-- Top Right: Refresh Button -->
+        <ImageView
             android:id="@+id/widget_btn_refresh_4x2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:background="@drawable/bg_pill_badge"
-            android:gravity="center_vertical"
-            android:paddingStart="8dp"
-            android:paddingTop="3dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="3dp">
-
-            <ImageView
-                android:layout_width="6dp"
-                android:layout_height="6dp"
-                android:src="@drawable/bg_badge_online" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:singleLine="true"
-                android:text="Active"
-                android:textColor="@color/ds_text_secondary"
-                android:textSize="10sp" />
-        </LinearLayout>
+            android:contentDescription="@string/refresh_btn"
+            android:padding="6dp"
+            android:src="@drawable/ic_refresh" />
     </LinearLayout>
 
     <!-- Center Cards: Balance Card & Scan Action Card -->
