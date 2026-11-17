@@ -9,6 +9,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.SizeF
+import android.view.View
 import android.widget.RemoteViews
 import com.darkside.widget.R
 import com.darkside.widget.api.DarksideApi
@@ -19,6 +20,7 @@ import com.darkside.widget.ui.MainActivity
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
 /**
@@ -35,7 +37,7 @@ class DarksideWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         for (appWidgetId in appWidgetIds) {
             val options = appWidgetManager.getAppWidgetOptions(appWidgetId)
-            val views = buildResponsiveRemoteViews(context, options)
+            val views = buildResponsiveRemoteViews(context, options, isRefreshing.get())
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
     }
@@ -46,7 +48,7 @@ class DarksideWidgetProvider : AppWidgetProvider() {
         appWidgetId: Int,
         newOptions: Bundle
     ) {
-        val views = buildResponsiveRemoteViews(context, newOptions)
+        val views = buildResponsiveRemoteViews(context, newOptions, isRefreshing.get())
         appWidgetManager.updateAppWidget(appWidgetId, views)
     }
 
@@ -55,24 +57,32 @@ class DarksideWidgetProvider : AppWidgetProvider() {
         if (intent.action == ACTION_REFRESH) {
             val token = AuthManager.token
             if (!token.isNullOrBlank()) {
-                // Instantly indicate loading state on widgets
-                setWidgetsSyncText(context, "Обновление баланса...")
+                // Prevent duplicate concurrent requests on rapid clicks
+                if (isRefreshing.compareAndSet(false, true)) {
+                    lastSyncError = null
+                    // Immediately show loading indicator on widgets
+                    updateAllWidgets(context, isRefreshing = true)
 
-                thread {
-                    try {
-                        val profile = DarksideApi.getProfile(token)
-                        if (profile != null) {
-                            AuthManager.userName = profile.name
-                            if (profile.uuid != null) {
-                                AuthManager.userUuid = profile.uuid
+                    thread {
+                        try {
+                            val profile = DarksideApi.getProfile(token)
+                            if (profile != null) {
+                                AuthManager.userName = profile.name
+                                if (profile.uuid != null) {
+                                    AuthManager.userUuid = profile.uuid
+                                }
+                                AuthManager.updateBalance(context, profile.balance)
+                                lastSyncError = null
+                            } else {
+                                lastSyncError = "Ошибка сервера • Повторить"
                             }
-                            AuthManager.updateBalance(context, profile.balance)
-                        } else {
-                            setWidgetsSyncText(context, "Ошибка сервера • Повторить")
+                        } catch (_: Exception) {
+                            // Network error state
+                            lastSyncError = "Нет связи • Нажмите обновить"
+                        } finally {
+                            isRefreshing.set(false)
+                            updateAllWidgets(context, isRefreshing = false)
                         }
-                    } catch (_: Exception) {
-                        // Network error state
-                        setWidgetsSyncText(context, "Нет связи • Нажмите обновить")
                     }
                 }
             } else {
@@ -81,56 +91,49 @@ class DarksideWidgetProvider : AppWidgetProvider() {
         }
     }
 
-    private fun setWidgetsSyncText(context: Context, text: String) {
-        val appWidgetManager = AppWidgetManager.getInstance(context)
-        val thisWidget = ComponentName(context, DarksideWidgetProvider::class.java)
-        val appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
-        for (id in appWidgetIds) {
-            val views = RemoteViews(context.packageName, R.layout.widget_darkside_4x2)
-            views.setTextViewText(R.id.widget_last_sync_4x2, text)
-            appWidgetManager.partiallyUpdateAppWidget(id, views)
-        }
-    }
-
     companion object {
         const val ACTION_REFRESH = "com.darkside.widget.ACTION_REFRESH"
 
-        fun updateAllWidgets(context: Context) {
+        private val isRefreshing = AtomicBoolean(false)
+        @Volatile
+        private var lastSyncError: String? = null
+
+        fun updateAllWidgets(context: Context, isRefreshing: Boolean = false) {
             val appWidgetManager = AppWidgetManager.getInstance(context)
             val thisWidget = ComponentName(context, DarksideWidgetProvider::class.java)
             val appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
             for (id in appWidgetIds) {
                 val options = appWidgetManager.getAppWidgetOptions(id)
-                val views = buildResponsiveRemoteViews(context, options)
+                val views = buildResponsiveRemoteViews(context, options, isRefreshing)
                 appWidgetManager.updateAppWidget(id, views)
             }
         }
 
-        private fun buildResponsiveRemoteViews(context: Context, options: Bundle): RemoteViews {
+        private fun buildResponsiveRemoteViews(context: Context, options: Bundle, isRefreshing: Boolean): RemoteViews {
             // Android 12+ (API 31+) native responsive layout mapping
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val viewsMap = mapOf(
                     SizeF(100f, 100f) to build2x2Views(context),
-                    SizeF(100f, 170f) to buildTallViews(context),
-                    SizeF(265f, 50f) to build4x1Views(context),
-                    SizeF(265f, 110f) to build4x2Views(context)
+                    SizeF(100f, 170f) to buildTallViews(context, isRefreshing),
+                    SizeF(240f, 50f) to build4x1Views(context),
+                    SizeF(240f, 110f) to build4x2Views(context, isRefreshing)
                 )
                 return RemoteViews(viewsMap)
             }
 
             // Fallback for Android 8 - 11 based on widget width/height options
-            val minWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 265).let { if (it <= 0) 265 else it }
+            val minWidth = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 240).let { if (it <= 0) 240 else it }
             val minHeight = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 110).let { if (it <= 0) 110 else it }
 
             return when {
-                minWidth >= 265 && minHeight >= 110 -> build4x2Views(context)
-                minWidth >= 265 -> build4x1Views(context)
-                minHeight >= 170 -> buildTallViews(context)
+                minWidth >= 240 && minHeight >= 110 -> build4x2Views(context, isRefreshing)
+                minWidth >= 240 -> build4x1Views(context)
+                minHeight >= 170 -> buildTallViews(context, isRefreshing)
                 else -> build2x2Views(context)
             }
         }
 
-        private fun buildTallViews(context: Context): RemoteViews {
+        private fun buildTallViews(context: Context, isRefreshing: Boolean): RemoteViews {
             val views = RemoteViews(context.packageName, R.layout.widget_darkside_tall)
             val isLoggedIn = AuthManager.isLoggedIn
 
@@ -138,19 +141,33 @@ class DarksideWidgetProvider : AppWidgetProvider() {
                 val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
                 views.setTextViewText(R.id.widget_balance_tall, balanceStr)
                 views.setTextViewText(R.id.widget_user_name_tall, AuthManager.userName)
+                views.setTextViewText(R.id.widget_club_label_tall, "DARKSIDE WORLD")
                 views.setTextViewText(R.id.widget_coins_label_tall, context.getString(R.string.coins_unit))
+
+                // Loading state feedback
+                if (isRefreshing) {
+                    views.setViewVisibility(R.id.widget_btn_refresh_tall, View.GONE)
+                    views.setViewVisibility(R.id.widget_progress_refresh_tall, View.VISIBLE)
+                } else {
+                    views.setViewVisibility(R.id.widget_btn_refresh_tall, View.VISIBLE)
+                    views.setViewVisibility(R.id.widget_progress_refresh_tall, View.GONE)
+                }
+
                 setupIntents(context, views, R.id.widget_root_tall, R.id.widget_btn_scan_tall, R.id.widget_btn_refresh_tall, isLoggedIn)
             } else {
                 views.setTextViewText(R.id.widget_balance_tall, "—")
                 views.setTextViewText(R.id.widget_user_name_tall, "Darkside")
+                views.setTextViewText(R.id.widget_club_label_tall, "DARKSIDE WORLD")
                 views.setTextViewText(R.id.widget_coins_label_tall, "Вход")
+                views.setViewVisibility(R.id.widget_btn_refresh_tall, View.GONE)
+                views.setViewVisibility(R.id.widget_progress_refresh_tall, View.GONE)
                 setupIntents(context, views, R.id.widget_root_tall, R.id.widget_btn_scan_tall, null, isLoggedIn)
             }
 
             return views
         }
 
-        private fun build4x2Views(context: Context): RemoteViews {
+        private fun build4x2Views(context: Context, isRefreshing: Boolean): RemoteViews {
             val views = RemoteViews(context.packageName, R.layout.widget_darkside_4x2)
             val isLoggedIn = AuthManager.isLoggedIn
 
@@ -158,30 +175,45 @@ class DarksideWidgetProvider : AppWidgetProvider() {
                 val balanceStr = String.format(Locale.getDefault(), "%,d", AuthManager.balance).replace(',', ' ')
                 views.setTextViewText(R.id.widget_balance_4x2, balanceStr)
                 views.setTextViewText(R.id.widget_user_name_4x2, AuthManager.userName)
+                views.setTextViewText(R.id.widget_club_label_4x2, "DARKSIDE WORLD")
                 views.setTextViewText(R.id.widget_coins_label_4x2, context.getString(R.string.coins_unit))
-                views.setTextViewText(R.id.widget_status_sub_4x2, "Готов к сканированию")
 
-                if (AuthManager.lastSyncTimestamp > 0) {
-                    val age = System.currentTimeMillis() - AuthManager.lastSyncTimestamp
-                    val timeFormat = if (age > 24 * 3600 * 1000L) {
-                        SimpleDateFormat("dd.MM", Locale.getDefault())
-                    } else {
-                        SimpleDateFormat("HH:mm", Locale.getDefault())
-                    }
-                    views.setTextViewText(
-                        R.id.widget_last_sync_4x2,
-                        "Обновлено в " + timeFormat.format(Date(AuthManager.lastSyncTimestamp))
-                    )
+                // Loading and sync status feedback
+                if (isRefreshing) {
+                    views.setViewVisibility(R.id.widget_btn_refresh_4x2, View.GONE)
+                    views.setViewVisibility(R.id.widget_progress_refresh_4x2, View.VISIBLE)
+                    views.setTextViewText(R.id.widget_last_sync_4x2, "Синхронизация...")
                 } else {
-                    views.setTextViewText(R.id.widget_last_sync_4x2, "Нажми для быстрого сканирования")
+                    views.setViewVisibility(R.id.widget_btn_refresh_4x2, View.VISIBLE)
+                    views.setViewVisibility(R.id.widget_progress_refresh_4x2, View.GONE)
+
+                    if (lastSyncError != null) {
+                        views.setTextViewText(R.id.widget_last_sync_4x2, lastSyncError)
+                    } else if (AuthManager.lastSyncTimestamp > 0) {
+                        val age = System.currentTimeMillis() - AuthManager.lastSyncTimestamp
+                        val timeFormat = if (age > 24 * 3600 * 1000L) {
+                            SimpleDateFormat("dd.MM", Locale.getDefault())
+                        } else {
+                            SimpleDateFormat("HH:mm", Locale.getDefault())
+                        }
+                        views.setTextViewText(
+                            R.id.widget_last_sync_4x2,
+                            "Обновлено в " + timeFormat.format(Date(AuthManager.lastSyncTimestamp))
+                        )
+                    } else {
+                        views.setTextViewText(R.id.widget_last_sync_4x2, "Нажми для быстрого сканирования")
+                    }
                 }
+
                 setupIntents(context, views, R.id.widget_root_4x2, R.id.widget_btn_scan_4x2, R.id.widget_btn_refresh_4x2, isLoggedIn)
             } else {
                 views.setTextViewText(R.id.widget_balance_4x2, "—")
-                views.setTextViewText(R.id.widget_user_name_4x2, "Darkside World")
+                views.setTextViewText(R.id.widget_user_name_4x2, "Darkside")
+                views.setTextViewText(R.id.widget_club_label_4x2, "DARKSIDE WORLD")
                 views.setTextViewText(R.id.widget_coins_label_4x2, "")
-                views.setTextViewText(R.id.widget_status_sub_4x2, "Нажмите для входа")
                 views.setTextViewText(R.id.widget_last_sync_4x2, "Требуется авторизация")
+                views.setViewVisibility(R.id.widget_btn_refresh_4x2, View.GONE)
+                views.setViewVisibility(R.id.widget_progress_refresh_4x2, View.GONE)
                 setupIntents(context, views, R.id.widget_root_4x2, R.id.widget_btn_scan_4x2, null, isLoggedIn)
             }
 

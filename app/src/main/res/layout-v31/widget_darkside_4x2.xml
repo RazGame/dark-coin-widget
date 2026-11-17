@@ -44,21 +44,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="DARKSIDE CLUB"
+                android:text="DARKSIDE WORLD"
                 android:textColor="@color/widget_text_secondary"
                 android:textSize="8sp"
                 android:textAllCaps="true" />
         </LinearLayout>
 
-        <!-- Top Right: Refresh Button (Min 48x48dp touch target) -->
-        <ImageView
-            android:id="@+id/widget_btn_refresh_4x2"
+        <!-- Top Right: Refresh Button & Indeterminate Progress (Min 48x48dp touch target) -->
+        <FrameLayout
             android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/bg_pill_badge"
-            android:contentDescription="@string/refresh_btn"
-            android:padding="13dp"
-            android:src="@drawable/ic_refresh" />
+            android:layout_height="48dp">
+
+            <ImageView
+                android:id="@+id/widget_btn_refresh_4x2"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_pill_badge"
+                android:contentDescription="@string/refresh_btn"
+                android:padding="13dp"
+                android:src="@drawable/ic_refresh" />
+
+            <ProgressBar
+                android:id="@+id/widget_progress_refresh_4x2"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="gone" />
+        </FrameLayout>
     </LinearLayout>
 
     <!-- Center Cards: Balance Card & Scan Action Card -->
@@ -79,7 +94,7 @@
             android:background="@drawable/bg_widget_inner_card"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="12dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -92,14 +107,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="4dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="6dp"
                     android:src="@drawable/ic_coin"
                     android:contentDescription="@string/app_name" />
 
@@ -111,7 +126,7 @@
                     android:singleLine="true"
                     android:text="1 781"
                     android:textColor="@color/widget_text_primary"
-                    android:textSize="20sp" />
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/widget_coins_label_4x2"
@@ -124,17 +139,6 @@
                     android:textColor="@color/widget_accent"
                     android:textSize="9sp" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/widget_status_sub_4x2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="Готов к сканированию"
-                android:textColor="@color/widget_text_tertiary"
-                android:textSize="9sp" />
         </LinearLayout>
 
         <!-- Right: Scan Action Card (Min 48dp touch target) -->
@@ -180,31 +184,14 @@
     </LinearLayout>
 
     <!-- Bottom Footer: Info -->
-    <LinearLayout
+    <TextView
+        android:id="@+id/widget_last_sync_4x2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/widget_last_sync_4x2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="Нажми для быстрого сканирования"
-            android:textColor="@color/widget_text_tertiary"
-            android:textSize="9sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/unisans_bold"
-            android:singleLine="true"
-            android:text="DARKSIDE WORLD"
-            android:textColor="@color/widget_accent"
-            android:textSize="9sp" />
-    </LinearLayout>
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="Нажми для быстрого сканирования"
+        android:textColor="@color/widget_text_tertiary"
+        android:textSize="9sp" />
 
 </LinearLayout>

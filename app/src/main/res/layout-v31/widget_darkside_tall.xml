@@ -21,28 +21,59 @@
             android:src="@drawable/ic_user"
             android:contentDescription="@string/app_name" />
 
-        <TextView
-            android:id="@+id/widget_user_name_tall"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:ellipsize="end"
-            android:fontFamily="@font/unisans_bold"
-            android:singleLine="true"
-            android:text="Михаил"
-            android:textColor="@color/widget_text_primary"
-            android:textSize="12sp" />
+            android:orientation="vertical">
 
-        <!-- Top Right: Refresh Button (48x48dp touch target) -->
-        <ImageView
-            android:id="@+id/widget_btn_refresh_tall"
+            <TextView
+                android:id="@+id/widget_user_name_tall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/unisans_bold"
+                android:singleLine="true"
+                android:text="Михаил"
+                android:textColor="@color/widget_text_primary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/widget_club_label_tall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="DARKSIDE WORLD"
+                android:textColor="@color/widget_text_secondary"
+                android:textSize="8sp"
+                android:textAllCaps="true" />
+        </LinearLayout>
+
+        <!-- Top Right: Refresh Button & Indeterminate Progress (48x48dp touch target) -->
+        <FrameLayout
             android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/bg_pill_badge"
-            android:contentDescription="@string/refresh_btn"
-            android:padding="13dp"
-            android:src="@drawable/ic_refresh" />
+            android:layout_height="48dp">
+
+            <ImageView
+                android:id="@+id/widget_btn_refresh_tall"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_pill_badge"
+                android:contentDescription="@string/refresh_btn"
+                android:padding="13dp"
+                android:src="@drawable/ic_refresh" />
+
+            <ProgressBar
+                android:id="@+id/widget_progress_refresh_tall"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="gone" />
+        </FrameLayout>
     </LinearLayout>
 
     <!-- Center: Balance Card -->
@@ -55,7 +86,7 @@
         android:background="@drawable/bg_widget_inner_card"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="10dp">
 
         <ImageView
             android:layout_width="24dp"
@@ -81,7 +112,7 @@
             android:singleLine="true"
             android:text="1 781"
             android:textColor="@color/widget_text_primary"
-            android:textSize="22sp" />
+            android:textSize="26sp" />
 
         <TextView
             android:id="@+id/widget_coins_label_tall"
@@ -91,7 +122,7 @@
             android:singleLine="true"
             android:text="@string/coins_unit"
             android:textColor="@color/widget_accent"
-            android:textSize="9sp" />
+            android:textSize="10sp" />
     </LinearLayout>
 
     <!-- Bottom: Scan Hero Button (Min 48dp height) -->
@@ -119,9 +150,9 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/unisans_bold"
             android:singleLine="true"
-            android:text="@string/scan_qr"
+            android:text="@string/scan_qr_short"
             android:textColor="@color/widget_action_card_text"
-            android:textSize="11sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
 </LinearLayout>

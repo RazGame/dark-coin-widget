@@ -19,6 +19,11 @@ import com.darkside.widget.ui.LoginActivity
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
+import com.google.mlkit.common.MlKitException
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.CommonStatusCodes
+import java.util.Locale
+import java.util.concurrent.CancellationException
 import kotlin.concurrent.thread
 
 class QrScannerActivity : AppCompatActivity() {
@@ -60,12 +65,40 @@ class QrScannerActivity : AppCompatActivity() {
                 }
             }
             .addOnCanceledListener {
+                // User intentionally cancelled scan: cleanly return to app without errors
                 finish()
             }
             .addOnFailureListener { e ->
+                // Distinguish cancellation from true scanning errors
+                if (isUserCancellation(e)) {
+                    finish()
+                    return@addOnFailureListener
+                }
                 Toast.makeText(this, getString(R.string.scan_error_generic, e.localizedMessage), Toast.LENGTH_LONG).show()
                 finish()
             }
+    }
+
+    private fun isUserCancellation(e: Exception): Boolean {
+        if (e is MlKitException) {
+            if (e.errorCode == MlKitException.CODE_SCANNER_CANCELLED ||
+                e.errorCode == MlKitException.CANCELLED) {
+                return true
+            }
+        }
+        if (e is ApiException) {
+            if (e.statusCode == CommonStatusCodes.CANCELED) {
+                return true
+            }
+        }
+        if (e is CancellationException) {
+            return true
+        }
+        val msg = e.message?.lowercase(Locale.ROOT) ?: ""
+        if (msg.contains("cancel") || msg.contains("102") || msg.contains("16")) {
+            return true
+        }
+        return false
     }
 
     private fun processScannedCode(qrCode: String) {

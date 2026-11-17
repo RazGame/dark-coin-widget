@@ -14,7 +14,7 @@
     <string name="logout_btn">Выйти из аккаунта</string>
     <string name="refresh_btn">Обновить баланс</string>
     <string name="pin_widget_btn">Добавить виджет на рабочий стол</string>
-    <string name="test_scan_btn">Проверить сканер прямо сейчас</string>
+    <string name="test_scan_btn">Сканировать</string>
     <string name="auth_success">Успешный вход! Данные обновлены.</string>
     <string name="scan_success">+%d Dark Coins зачислено!</string>
     <string name="scan_error_already_used">Этот QR-код уже был активирован ранее.</string>
