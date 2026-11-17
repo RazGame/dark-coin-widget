@@ -10,7 +10,7 @@
         android:fillType="evenOdd"
         android:pathData="M12,1 C18.075,1 23,5.925 23,12 C23,18.075 18.075,23 12,23 C5.925,23 1,18.075 1,12 C1,5.925 5.925,1 12,1 Z M12,2.6 C6.809,2.6 2.6,6.809 2.6,12 C2.6,17.191 6.809,21.4 12,21.4 C17.191,21.4 21.4,17.191 21.4,12 C21.4,6.809 17.191,2.6 12,2.6 Z" />
 
-    <!-- Authentic Darkside D Monogram (Centered horizontally and vertically) -->
+    <!-- Coin D Monogram (Centered horizontally and vertically) -->
     <group
         android:scaleX="0.4113"
         android:scaleY="0.4113"

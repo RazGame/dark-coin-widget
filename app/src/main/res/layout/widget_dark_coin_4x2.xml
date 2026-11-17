@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/widget_root_4x2" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/bg_widget_container" android:orientation="vertical" android:padding="14dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal" android:baselineAligned="false">
+        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_user" android:contentDescription="@string/app_name" />
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:layout_weight="1" android:orientation="vertical">
+            <TextView android:id="@+id/widget_user_name_4x2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:ellipsize="end" android:fontFamily="@font/unisans_bold" android:singleLine="true" android:text="@string/not_logged_in" android:textColor="@color/widget_text_primary" android:textSize="13sp" />
+            <TextView android:id="@+id/widget_brand_label_4x2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" android:text="@string/app_name" android:textColor="@color/widget_text_secondary" android:textSize="11sp" android:textAllCaps="true" />
+        </LinearLayout>
+        <FrameLayout android:layout_width="48dp" android:layout_height="48dp">
+            <ImageView android:id="@+id/widget_btn_refresh_4x2" android:layout_width="48dp" android:layout_height="48dp" android:layout_gravity="center" android:background="@drawable/bg_pill_badge" android:contentDescription="@string/refresh_btn" android:padding="13dp" android:src="@drawable/ic_refresh" />
+            <ProgressBar android:id="@+id/widget_progress_refresh_4x2" style="?android:attr/progressBarStyleSmall" android:layout_width="22dp" android:layout_height="22dp" android:layout_gravity="center" android:indeterminate="true" android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_marginTop="8dp" android:layout_marginBottom="6dp" android:layout_weight="1" android:orientation="horizontal" android:baselineAligned="false">
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="@drawable/bg_widget_inner_card" android:gravity="center_vertical" android:orientation="vertical" android:padding="12dp" android:layout_marginEnd="4dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" android:text="@string/balance_label" android:textColor="@color/widget_text_secondary" android:textSize="11sp" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center_vertical" android:orientation="horizontal" android:baselineAligned="false">
+                <TextView android:id="@+id/widget_balance_4x2" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:fontFamily="@font/unisans_heavy" android:singleLine="true" android:text="—" android:textColor="@color/widget_text_primary" android:autoSizeTextType="uniform" android:autoSizeMinTextSize="11sp" android:autoSizeMaxTextSize="22sp" android:autoSizeStepGranularity="1sp" android:textSize="22sp" />
+            </LinearLayout>
+            <TextView android:id="@+id/widget_coins_label_4x2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="5dp" android:fontFamily="@font/unisans_bold" android:singleLine="true" android:text="@string/coins_unit" android:textColor="@color/widget_accent" android:textSize="11sp" />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/widget_btn_scan_4x2" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="@drawable/bg_widget_action_card" android:clickable="true" android:focusable="true" android:gravity="center_vertical" android:orientation="vertical" android:padding="12dp" android:contentDescription="@string/scan_qr_short" android:layout_marginStart="4dp">
+            <ImageView android:layout_width="32dp" android:layout_height="32dp" android:contentDescription="@string/scan_qr" android:src="@drawable/ic_scan_qr" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:ellipsize="none" android:fontFamily="@font/unisans_bold" android:singleLine="true" android:text="@string/scan_qr_short" android:textColor="@color/widget_action_card_text" android:textSize="14sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:ellipsize="none" android:singleLine="true" android:text="@string/scan_qr_subtitle" android:textColor="@color/widget_action_card_text" android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView android:id="@+id/widget_last_sync_4x2" android:layout_width="match_parent" android:layout_height="wrap_content" android:ellipsize="end" android:singleLine="true" android:text="Нажми для быстрого сканирования" android:textColor="@color/widget_text_tertiary" android:textSize="11sp" />
+</LinearLayout>

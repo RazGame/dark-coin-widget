@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Top Header: Strictly Centered Logo -->
+            <!-- Top Header: Centered Service Logo -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
                     android:layout_height="38dp"
                     android:layout_gravity="center"
                     android:adjustViewBounds="true"
-                    android:contentDescription="@string/app_name"
+                    android:contentDescription="@string/service_name"
                     android:src="@drawable/ic_darkside_logo" />
             </FrameLayout>
 
@@ -165,7 +165,7 @@
                             android:textSize="12sp" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:gravity="center_vertical"
@@ -180,7 +180,13 @@
 
                             <TextView
                                 android:id="@+id/tv_balance"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:maxLines="1"
+                                android:autoSizeTextType="uniform"
+                                android:autoSizeMinTextSize="12sp"
+                                android:autoSizeMaxTextSize="32sp"
+                                android:autoSizeStepGranularity="1sp"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/unisans_heavy"
                                 android:text="0"
@@ -199,7 +205,7 @@
 
                         <TextView
                             android:id="@+id/tv_last_sync"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="Синхронизировано"
@@ -276,7 +282,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:lineSpacingExtra="3dp"
-                        android:text="Добавьте виджет Darkside на домашний экран вашего Android устройства. Виджет адаптивный (поддерживает размеры 2x2, 4x1 и 4x2), следует динамической системной теме Material You и запускает моментальное сканирование пачек!"
+                        android:text="Добавьте виджет Dark Coin на домашний экран вашего Android устройства. Виджет адаптивный (поддерживает размеры 2x2, 4x1 и 4x2), следует динамической системной теме Material You и запускает моментальное сканирование пачек!"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="12sp" />
                 </LinearLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme in official Material 3 Expressive DayNight with Dynamic Color -->
-    <style name="Theme.Darkside" parent="Theme.Material3Expressive.DayNight.NoActionBar">
+    <style name="Theme.DarkCoin" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <!-- Semantic M3 color roles -->
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
@@ -34,7 +34,7 @@
     </style>
 
     <!-- Translucent theme for Google Code Scanner launch from widget -->
-    <style name="Theme.Darkside.Translucent" parent="Theme.Darkside">
+    <style name="Theme.DarkCoin.Translucent" parent="Theme.DarkCoin">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>

@@ -1,17 +1,42 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/app/build
-/captures
-.externalNativeBuild
-.cxx
+# Gradle, Android and Kotlin generated files
+.gradle/
+.kotlin/
+build/
+.externalNativeBuild/
+.cxx/
+/captures/
 local.properties
-Darkside-release.apk
+
+# IDE files
+*.iml
+/.idea/
+
+# Build artifacts and logs
+*.apk
+*.aab
+*.ap_
+*.dex
+*.log
+
+# Local signing keys and credentials
+*.jks
+*.keystore
+*.p12
+*.pfx
+/keystore.properties
+/signing.properties
+/.env
+/.env.*
+!/.env.example
+
+# Local audit reports, evidence and exploratory files
+/AUDIT.md
+/AUDIT_FINDINGS.md
+/audit/
+/scratch/
+/.codex-attachments/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">Darkside</string>
-    <string name="widget_name">Darkside World</string>
+    <string name="app_name">Dark Coin</string>
+    <string name="widget_name">Dark Coin</string>
     <string name="widget_description">Быстрое сканирование QR-кодов из пачек и баланс Dark Coins в стиле Material 3 Expressive.</string>
+    <string name="service_name">DARKSIDE WORLD</string>
     <string name="title_login">Вход в DARKSIDE WORLD</string>
     <string name="scan_qr">СКАНИРОВАТЬ</string>
     <string name="scan_qr_short">Сканировать</string>
@@ -10,7 +11,7 @@
     <string name="coins_unit">DARK COIN</string>
     <string name="not_logged_in">Не авторизован</string>
     <string name="tap_to_login">Нажми, чтобы войти в аккаунт</string>
-    <string name="login_btn">Войти через Darkside</string>
+    <string name="login_btn">Войти в аккаунт</string>
     <string name="logout_btn">Выйти из аккаунта</string>
     <string name="refresh_btn">Обновить баланс</string>
     <string name="pin_widget_btn">Добавить виджет на рабочий стол</string>

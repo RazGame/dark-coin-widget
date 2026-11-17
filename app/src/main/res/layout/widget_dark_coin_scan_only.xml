@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/widget_root_scan_only" android:layout_width="match_parent" android:layout_height="match_parent" android:minWidth="64dp" android:minHeight="64dp" android:clickable="true" android:focusable="true" android:contentDescription="@string/scan_qr_short">
+    <FrameLayout android:layout_width="48dp" android:layout_height="48dp" android:layout_gravity="center" android:background="@drawable/bg_widget_circle_btn">
+        <ImageView android:layout_width="24dp" android:layout_height="24dp" android:layout_gravity="center" android:src="@drawable/ic_scan_qr" android:importantForAccessibility="no" />
+    </FrameLayout>
+</FrameLayout>
