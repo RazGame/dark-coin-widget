@@ -1,0 +1,4 @@
+#Tue Nov 17 16:27:23 MSK 2026
+base.0=C\:\\Projects\\Darkside\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

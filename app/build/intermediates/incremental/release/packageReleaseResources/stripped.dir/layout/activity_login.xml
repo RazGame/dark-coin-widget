@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ds_surface"
+    android:orientation="vertical">
+
+    <!-- Top Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/ds_surface"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:navigationIconTint="@color/ds_text_primary"
+        app:title="@string/title_login"
+        app:titleTextColor="@color/ds_text_primary" />
+
+    <!-- Loading Bar -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:indeterminate="true"
+        app:indicatorColor="@color/ds_primary"
+        app:trackColor="@color/ds_surface_variant" />
+
+    <!-- WebView Container -->
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

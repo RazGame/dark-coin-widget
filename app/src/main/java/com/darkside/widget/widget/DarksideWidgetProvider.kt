@@ -78,8 +78,8 @@ class DarksideWidgetProvider : AppWidgetProvider() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val viewsMap = mapOf(
                     SizeF(100f, 100f) to build2x2Views(context),
-                    SizeF(240f, 55f) to build4x1Views(context),
-                    SizeF(240f, 130f) to build4x2Views(context)
+                    SizeF(220f, 50f) to build4x1Views(context),
+                    SizeF(220f, 110f) to build4x2Views(context)
                 )
                 return RemoteViews(viewsMap)
             }

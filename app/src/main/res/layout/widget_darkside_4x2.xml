@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_widget_container"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="14dp">
 
     <!-- Top Header: User Profile & Status Badge -->
     <LinearLayout
@@ -15,8 +15,8 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:src="@drawable/ic_user"
             android:contentDescription="@string/app_name" />
 
@@ -72,20 +72,20 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Center Cards: Balance Card & Scan Button -->
+    <!-- Center Cards: Balance Card & Scan Action Card -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <!-- Balance Card -->
+        <!-- Left: Balance Card -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginEnd="6dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:background="@drawable/bg_widget_inner_card"
             android:gravity="center_vertical"
@@ -119,6 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:layout_marginBottom="2dp"
                     android:text="@string/coins_unit"
                     android:textColor="@color/ds_primary"
                     android:textSize="10sp"
@@ -135,30 +136,33 @@
                 android:textSize="9sp" />
         </LinearLayout>
 
-        <!-- Big Scan Hero Button -->
+        <!-- Right: Scan Action Card (Matching 20dp squircle) -->
         <LinearLayout
             android:id="@+id/widget_btn_scan_4x2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_widget_pill_button"
+            android:background="@drawable/bg_widget_action_card"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
             android:orientation="vertical"
             android:padding="12dp">
 
+            <!-- Circular dark badge for the icon -->
             <ImageView
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:src="@drawable/ic_scan_qr"
-                android:contentDescription="@string/scan_qr" />
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/bg_widget_circle_icon_dark"
+                android:contentDescription="@string/scan_qr"
+                android:padding="6dp"
+                android:src="@drawable/ic_scan_qr_white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:text="@string/scan_qr"
                 android:textColor="@color/ds_on_primary_container"
                 android:textSize="12sp"

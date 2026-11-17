@@ -51,7 +51,7 @@ object DarksideApi {
             val data = json.optJSONObject("data") ?: json.optJSONObject("user") ?: return null
             val name = data.optString("name", data.optString("nickname", "Пользователь"))
             val balance = data.optInt("balance", 0)
-            val uuid = data.optString("uuid", null)
+            val uuid = if (data.has("uuid") && !data.isNull("uuid")) data.getString("uuid") else null
 
             return UserProfile(name = name, balance = balance, uuid = uuid)
         }
